@@ -196,6 +196,9 @@ func switching(digits string) string {
 	if len(Digits) > 3 && firstDigit(Digits) == "零" {
 		Digits = Digits[3:]
 	}
+	if len(Digits) == 0 {
+		Digits += capitalFigures[0]
+	}
 	Digits = Digits + "元整"
 	return Digits
 }

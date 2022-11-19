@@ -12,6 +12,9 @@ var keyWords = []string{
 }
 
 func CNConvertToDigit(input string) int {
+	if input == "零元整" {
+		return -2
+	}
 	res := 0
 	input = strings.ReplaceAll(input, "零", "")
 	if 1 == strings.Count(input, keyWords[0]) {

@@ -31,9 +31,20 @@ func ConvertService(ctx *gin.Context) {
 		return
 	}
 	if tpe == util.CN {
+		i := util.CNConvertToDigit(req.Input)
+		if i == -1 || i == 0 {
+			ctx.JSON(200, ConvertResponse{
+				Code: 0,
+				Data: "",
+			})
+			return
+		}
+		if i == -2 {
+			i = 0
+		}
 		ctx.JSON(200, ConvertResponse{
 			Code: 1,
-			Data: strconv.Itoa(util.CNConvertToDigit(req.Input)),
+			Data: strconv.Itoa(i),
 		})
 		return
 	}

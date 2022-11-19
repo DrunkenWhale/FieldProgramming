@@ -27,7 +27,6 @@ func connectDigits(last, next string) string {
 }
 
 func switching(digits string) string { //组内转换
-	println(digits)
 	var Digits string
 	for len(digits) < 4 {
 		digits = "0" + digits
@@ -43,7 +42,6 @@ func switching(digits string) string { //组内转换
 	if lastDigit(Digits) == "零" {
 		Digits = Digits[:len(Digits)-3]
 	}
-	println(Digits)
 	return Digits
 }
 

@@ -10,5 +10,5 @@ func TestSwitching(t *testing.T) {
 	//println(Switching("9"))
 	//println(Switching("505500505050"))
 	//println(Switching("abc"))
-	println(Switching("0"))
+	println(Switching("00000"))
 }

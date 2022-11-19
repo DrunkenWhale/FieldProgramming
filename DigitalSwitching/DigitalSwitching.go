@@ -27,6 +27,7 @@ func connectDigits(last, next string) string {
 }
 
 func switching(digits string) string { //组内转换
+	println(digits)
 	var Digits string
 	for len(digits) < 4 {
 		digits = "0" + digits
@@ -39,6 +40,10 @@ func switching(digits string) string { //组内转换
 			Digits = Digits + digitalRight[i]
 		}
 	}
+	if lastDigit(Digits) == "零" {
+		Digits = Digits[:len(Digits)-3]
+	}
+	println(Digits)
 	return Digits
 }
 
@@ -53,7 +58,7 @@ func Switching(digits string) string {
 		part := digits[0 : len(digits)-8]
 		partDigits := switching(part)
 		Digits = connectDigits(Digits, partDigits)
-		if partDigits != "零" {
+		if len(partDigits) != 0 {
 			Digits = Digits + "亿"
 		}
 	}
@@ -64,7 +69,7 @@ func Switching(digits string) string {
 		part := digits[0 : len(digits)-4]
 		partDigits := switching(part)
 		Digits = connectDigits(Digits, partDigits)
-		if partDigits != "零" {
+		if len(partDigits) != 0 {
 			Digits = Digits + "万"
 		}
 	}
@@ -75,9 +80,6 @@ func Switching(digits string) string {
 	Digits = connectDigits(Digits, partDigits)
 	if len(Digits) > 3 && firstDigit(Digits) == "零" {
 		Digits = Digits[3:]
-	}
-	if firstDigit(Digits) != "零" && lastDigit(Digits) == "零" {
-		Digits = Digits[:len(Digits)-3]
 	}
 	Digits = Digits + "元整"
 	return Digits

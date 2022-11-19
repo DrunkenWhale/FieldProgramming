@@ -2,6 +2,7 @@ package util
 
 import (
 	"strconv"
+	"strings"
 )
 
 type InputType = int
@@ -24,6 +25,9 @@ func JudgeInputType(input string) InputType {
 		// gbk是三个字节的
 		return UNKNOWN
 	}
+	if filterCN(input) {
+		return CN
+	}
 	return UNKNOWN
 }
 
@@ -44,6 +48,14 @@ var legalCN = []string{"零",
 	"拾",
 }
 
+var illegalCN = []string{
+	"零仟",
+	"零佰",
+	"零拾",
+	"零亿",
+	"零万",
+}
+
 func checkSingleDigit(Digit string) bool {
 	for _, i := range legalCN {
 		if Digit == i {
@@ -56,6 +68,11 @@ func checkSingleDigit(Digit string) bool {
 func filterCN(input string) bool {
 	for i := 0; i < len(input); i += 3 {
 		if !checkSingleDigit(input[i : i+3]) {
+			return false
+		}
+	}
+	for _, s := range illegalCN {
+		if strings.Contains(input, s) {
 			return false
 		}
 	}

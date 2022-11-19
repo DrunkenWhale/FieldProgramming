@@ -44,8 +44,20 @@ var legalCN = []string{"零",
 	"拾",
 }
 
-func filterCN(input string) {
-	//for _, i := range input {
-	//
-	//}
+func checkSingleDigit(Digit string) bool {
+	for _, i := range legalCN {
+		if Digit == i {
+			return true
+		}
+	}
+	return false
+}
+
+func filterCN(input string) bool {
+	for i := 0; i < len(input); i += 3 {
+		if !checkSingleDigit(input[i : i+3]) {
+			return false
+		}
+	}
+	return true
 }

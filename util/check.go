@@ -1,6 +1,8 @@
 package util
 
-import "strconv"
+import (
+	"strconv"
+)
 
 type InputType = int
 
@@ -23,4 +25,27 @@ func JudgeInputType(input string) InputType {
 		return UNKNOWN
 	}
 	return UNKNOWN
+}
+
+var legalCN = []string{"零",
+	"壹",
+	"贰",
+	"叁",
+	"肆",
+	"伍",
+	"陆",
+	"柒",
+	"捌",
+	"玖",
+	"亿",
+	"万",
+	"仟",
+	"佰",
+	"拾",
+}
+
+func filterCN(input string) {
+	for _, i := range input {
+
+	}
 }

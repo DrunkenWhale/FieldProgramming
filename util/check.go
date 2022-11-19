@@ -61,3 +61,25 @@ func filterCN(input string) bool {
 	}
 	return true
 }
+
+func filterPosition(input string) bool {
+	posy, posw := -1, -1
+	for index, Digit := range input {
+		if Digit == '亿' {
+			if posy != -1 {
+				return false
+			}
+			posy = index
+		}
+		if Digit == '万' {
+			if posw != -1 {
+				return false
+			}
+			posw = index
+		}
+	}
+	if posy != -1 && posw != -1 && posy < posw {
+		return false
+	}
+	return true
+}

@@ -45,7 +45,7 @@ var legalCN = []string{"零",
 }
 
 func filterCN(input string) {
-	for _, i := range input {
-
-	}
+	//for _, i := range input {
+	//
+	//}
 }

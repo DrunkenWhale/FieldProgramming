@@ -1,4 +1,4 @@
-package cmd
+package main
 
 import (
 	"FieldProgramming/router"
@@ -11,7 +11,7 @@ func main() {
 	{
 		api.POST("/conv", router.ConvertService)
 	}
-	err := g.Run(":3777")
+	err := g.Run(":8080")
 	if err != nil {
 		panic(err)
 		return

@@ -66,7 +66,10 @@ func checkSingleDigit(Digit string) bool {
 }
 
 func filterCN(input string) bool {
-	for i := 0; i < len(input); i += 3 {
+	if input[len(input)-6:] != "元整" {
+		return false
+	}
+	for i := 0; i < len(input)-6; i += 3 {
 		if !checkSingleDigit(input[i : i+3]) {
 			return false
 		}
@@ -75,6 +78,9 @@ func filterCN(input string) bool {
 		if strings.Contains(input, s) {
 			return false
 		}
+	}
+	if !filterPosition(input) {
+		return false
 	}
 	return true
 }
@@ -95,7 +101,7 @@ func filterPosition(input string) bool {
 			posw = index
 		}
 	}
-	if posy != -1 && posw != -1 && posy < posw {
+	if posy != -1 && posw != -1 && posy > posw {
 		return false
 	}
 	return true

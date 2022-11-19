@@ -1,6 +1,7 @@
 package main
 
 import (
+	"FieldProgramming/middleware"
 	"FieldProgramming/router"
 	"github.com/gin-gonic/gin"
 )
@@ -8,6 +9,7 @@ import (
 func main() {
 	g := gin.Default()
 	api := g.Group("/api")
+	api.Use(middleware.Cors())
 	{
 		api.POST("/conv", router.ConvertService)
 	}

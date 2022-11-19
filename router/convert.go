@@ -7,7 +7,7 @@ import (
 )
 
 type ConvertRequest struct {
-	Input string `json:"input" binding:"input"`
+	Input string `json:"input" binding:"required"`
 }
 
 type ConvertResponse struct {
@@ -46,9 +46,17 @@ func ConvertService(ctx *gin.Context) {
 			})
 			return
 		}
+		data := util.DigitConvertToCN(strconv.FormatInt(int64(digit), 10))
+		if data == "输入错误" {
+			ctx.JSON(200, ConvertResponse{
+				Code: 0,
+				Data: "",
+			})
+			return
+		}
 		ctx.JSON(200, ConvertResponse{
 			Code: 1,
-			Data: util.DigitConvertToCN(digit),
+			Data: data,
 		})
 		return
 	}
